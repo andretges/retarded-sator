@@ -69,11 +69,18 @@
       font: 2rem/48px sans-serif;
       outline: none;
       width: 100%;
-      margin-bottom: 36px;
+      margin-bottom: 15px;
       background: #fff;
       color: #333;
       border: 1px solid #ccc;
       border-radius: 10px;
+    }
+    .mirror{
+      margin-bottom: 36px;
+    }
+    .mirror label{
+      font: 1rem sans-serif;
+      color: #555;
     }
     .submit {
       position: relative;
@@ -118,20 +125,31 @@
     </h1>
 
     <input type="text" class="textarea" placeholder="Big word" normal-input autofocus="true" autocapitalize="off" spellcheck="false">
+    <div class="mirror">
+      <input type="checkbox" id="mirror" mirror>
+      <label for="mirror">Mirror text</label>
+    </div>
     <button class="submit" just-crossed-the-line>Get retarded!</button>
     <div class="result" retarded-output></div>
   </div>
 
   <script>
     (function(){
-      function retardedSatorSquare(str) {
+      function retardedMirror(str, n) {
+        return str.slice(n, -1) + str.split('').reverse().join('').slice(0, n + 1);
+      }
+      function retardedNormal(str, n) {
+        return str.slice(n) + str.slice(0, n);
+      }
+      function retardedSatorSquare(str, mirror) {
         var arr = Array.apply(null, Array(str.length));
+        var func = mirror ? retardedMirror : retardedNormal
         return arr
-          .map(function(v, n) { return (str.slice(n) + str.slice(0, n)).split('').join(' ').concat("<br>") })
+          .map(function(v, n) { return func(str, n).split('').join(' ').concat("<br>") })
           .join('').toUpperCase().replace(/\s/g, '\u00A0');
       }
       function fire() {
-        result.innerHTML = retardedSatorSquare(input.value);
+        result.innerHTML = retardedSatorSquare(input.value, mirror.checked);
       }
       function selectText(node) {
         if (document.selection) {
@@ -149,6 +167,7 @@
       var input = document.querySelector('[normal-input]');
       var submit = document.querySelector('[just-crossed-the-line]');
       var result = document.querySelector('[retarded-output]');
+      var mirror = document.querySelector('[mirror]');
 
       submit.addEventListener('click', fire);
       input.addEventListener('keyup', function(event){
