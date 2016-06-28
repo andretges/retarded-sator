@@ -52,10 +52,14 @@
     .headline{
       margin: 60px 0 55px;
       text-align: center;
-      font-weight: normal;
-      font-size: 4.2rem;
+      font: normal normal 4.2rem serif;
       color: #555;
       text-shadow: 2px 2px 0 0 #ddd;
+    }
+    .headline small{
+      position: absolute;
+      font: italic normal 1rem serif;
+      top: 4.5rem;
     }
     .textarea {
       position: relative;
@@ -67,8 +71,9 @@
       outline: none;
       width: 100%;
       margin-bottom: 36px;
-      border: 1px solid #ccc;
+      background: #fff;
       color: #333;
+      border: 1px solid #ccc;
       border-radius: 10px;
     }
     .submit {
@@ -108,8 +113,12 @@
 </head>
 <body>
   <div class="page-content">
-    <h1 class="headline">Retarded Sator Square Gen</h1>
-    <input type="text" class="textarea" autofocus="true" normal-input autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+    <h1 class="headline">
+      <small>The Romans were smarter</small>
+      <span>Retarded Sator Square Gen</span>
+    </h1>
+
+    <input type="text" class="textarea" placeholder="Smoething usful heer" autofocus="true" normal-input autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
     <button class="submit" just-crossed-the-line>Get retarded!</button>
     <div class="result" retarded-output></div>
   </div>
