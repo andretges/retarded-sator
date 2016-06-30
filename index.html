@@ -143,7 +143,7 @@
         var func = mirror ? retardedMirror : retardedNormal;
         return arr
           .map(function(v, n) { return func(str, n).split('').join(' ') + '<br>' })
-          .join('').toUpperCase().replace(/\s/g, '\u00A0');
+          .join('').toUpperCase().replace(/\s/g, String.fromCharCode(8199));
       }
       function fire() {
         result.innerHTML = retardedSatorSquare(input.value, mirror.checked);
