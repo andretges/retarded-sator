@@ -33,52 +33,51 @@
   <meta charset="UTF-8">
   <title>Retarded Sator Square Gen</title>
   <style>
-    body{
+    body {
       width: 100%;
       height: 100%;
       margin: 0;
       padding: 0;
       background: #dfe3ec;
     }
-    .page-content{
+    .page-content {
       position: relative;
-      box-sizing: border-box;
       display: block;
+      box-sizing: border-box;
       margin: 0 auto;
       padding: 0 20px;
       width: 100%;
       max-width: 1200px;
     }
-    .headline{
+    .headline {
       margin: 60px 0 55px;
       text-align: center;
       font: normal normal 4.2rem serif;
       color: #555;
-      text-shadow: 2px 2px 0 0 #ddd;
     }
-    .headline small{
+    .headline small {
       position: absolute;
       font: italic normal 1rem serif;
       top: 72px;
     }
-    .textarea {
+    .text-input {
       position: relative;
-      box-sizing: border-box;
       display: block;
+      box-sizing: border-box;
+      width: 100%;
       padding: 15px;
       font: 2rem/48px sans-serif;
       outline: none;
-      width: 100%;
       margin-bottom: 15px;
       background: #fff;
       color: #333;
       border: 1px solid #ccc;
       border-radius: 10px;
     }
-    .mirror{
+    .mirror {
       margin-bottom: 36px;
     }
-    .mirror label{
+    .mirror label {
       font: 1rem sans-serif;
       color: #555;
     }
@@ -87,32 +86,30 @@
       display: block;
       margin: 0 auto;
       padding: 15px 30px;
+      font: bold normal 0.9rem sans-serif;
       text-align: center;
-      font-size: 0.9rem;
-      outline: none;
       text-transform: uppercase;
-      font-weight: bold;
+      color: #5570f6;
       background: #dfe3ec;
       border: 2px solid #5570f6;
-      color: #5570f6;
+      outline: none;
       border-radius: 30px;
       cursor: pointer;
     }
-    .submit:hover{
+    .submit:hover {
       color: #fff;
       background: #5570f6;
     }
-    .submit:active{
+    .submit:active {
       color: #fff;
       background: #6e85f7;
       border-color: #6e85f7;
     }
-    .result{
+    .result {
       margin: 55px 0 50px;
+      font: bold normal 2rem/3rem monospace;
       text-align: center;
-      font: bold normal 2rem monospace;
       color: #555;
-      line-height: 3rem;
       letter-spacing: 0.7rem;
     }
   </style>
@@ -124,7 +121,7 @@
       <span>Retarded Sator Square Gen</span>
     </h1>
 
-    <input type="text" class="textarea" placeholder="Big word" normal-input autofocus="true" autocapitalize="off" spellcheck="false">
+    <input type="text" class="text-input" placeholder="Big word" normal-input autofocus="true" autocapitalize="off" spellcheck="false">
     <div class="mirror">
       <input type="checkbox" id="mirror" mirror>
       <label for="mirror">Mirror text</label>
@@ -143,9 +140,9 @@
       }
       function retardedSatorSquare(str, mirror) {
         var arr = Array.apply(null, Array(str.length));
-        var func = mirror ? retardedMirror : retardedNormal
+        var func = mirror ? retardedMirror : retardedNormal;
         return arr
-          .map(function(v, n) { return func(str, n).split('').join(' ').concat("<br>") })
+          .map(function(v, n) { return func(str, n).split('').join(' ') + '<br>' })
           .join('').toUpperCase().replace(/\s/g, '\u00A0');
       }
       function fire() {
@@ -171,7 +168,7 @@
 
       submit.addEventListener('click', fire);
       input.addEventListener('keyup', function(event){
-        if(event.keyCode === 13) fire()
+        if(event.keyCode === 13) fire();
       });
       result.addEventListener('click', function(){
         selectText(result);
